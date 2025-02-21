@@ -1,5 +1,62 @@
-.active {
-	color: red;
+.header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 1000;
+	background: white;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0.8rem 1.5rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.logo {
+	font-size: 1.5rem;
+	font-weight: bold;
+	color: #333;
+}
+
+.nav-links {
+	display: flex;
+	gap: 2rem;
+	align-items: center;
+
+	a {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		text-decoration: none;
+		color: #666;
+		padding: 0.5rem;
+		transition: all 0.3s ease;
+		border-radius: 8px;
+
+		&:hover {
+			background: rgba(0, 0, 0, 0.05);
+			color: #333;
+		}
+
+		&.active {
+			color: #1976d2;
+			background: rgba(25, 118, 210, 0.1);
+		}
+
+		i {
+			font-size: 1.2rem;
+		}
+	}
+}
+
+.main {
+	margin-top: 80px;
+	padding: 2rem;
 }
 
 .header {
