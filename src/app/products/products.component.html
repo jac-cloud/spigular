@@ -1,1 +1,19 @@
-<p>products works!</p>
+<div *ngIf="product">
+  <h1>{{ product.id }}</h1>
+  <h2>€{{ product.price }}</h2>
+</div>
+
+<div *ngIf="!product">
+  <input
+    type="text"
+    [(ngModel)]="search"
+    placeholder="Search for product"
+    (ngModelChange)="handleSearch()"
+  />
+  <div *ngFor="let product of products">
+    <a [routerLink]="['/products', product.id]">
+      <h1>{{ product.id }}</h1>
+      <h2>€{{ product.price }}</h2>
+    </a>
+  </div>
+</div>
