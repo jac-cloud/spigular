@@ -1,0 +1,48 @@
+<form #profileForm="ngForm" (ngSubmit)="onSubmit(profileForm)" (ngReset)="onReset(profileForm)">
+  <div>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" [(ngModel)]="user.name" required minlength="3" #name="ngModel">
+    <div *ngIf="name.invalid && (name.dirty || name.touched)">
+      <div *ngIf="name.errors?.required">Name is required.</div>
+      <div *ngIf="name.errors?.minlength">Name must be at least 3 characters long.</div>
+    </div>
+  </div>
+
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" [(ngModel)]="user.email" required email #email="ngModel">
+    <div *ngIf="email.invalid && (email.dirty || email.touched)">
+      <div *ngIf="email.errors?.required">Email is required.</div>
+      <div *ngIf="email.errors?.email">Invalid email address.</div>
+    </div>
+  </div>
+
+  <div>
+    <label for="bio">Bio:</label>
+    <textarea id="bio" name="bio" [(ngModel)]="user.bio" required minlength="10" #bio="ngModel"></textarea>
+    <div *ngIf="bio.invalid && (bio.dirty || bio.touched)">
+      <div *ngIf="bio.errors?.required">Bio is required.</div>
+      <div *ngIf="bio.errors?.minlength">Bio must be at least 10 characters long.</div>
+    </div>
+  </div>
+
+  <div>
+    <label for="preferences">Preferences:</label>
+    <input type="text" id="preferences" name="preferences" [(ngModel)]="user.preferences" required #preferences="ngModel">
+    <div *ngIf="preferences.invalid && (preferences.dirty || preferences.touched)">
+      <div *ngIf="preferences.errors?.required">Preferences are required.</div>
+    </div>
+  </div>
+
+  <div>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" [(ngModel)]="user.password" required appPasswordStrength #password="ngModel">
+    <div *ngIf="password.invalid && (password.dirty || password.touched)">
+      <div *ngIf="password.errors?.required">Password is required.</div>
+      <div *ngIf="password.errors?.passwordStrength">Password is not strong enough.</div>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="profileForm.invalid">Submit</button>
+  <button type="reset">Reset</button>
+</form>

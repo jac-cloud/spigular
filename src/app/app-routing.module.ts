@@ -9,6 +9,7 @@ import { AdminGuard } from './admin.guard';
 import { UnsavedChangesGuard } from './unsaved-changes.guard';
 import { DataResolver } from './data-resolver.guard';
 import { CanLoad } from '@angular/router';
+import { ProfileComponent } from './profile/profile.component';
 
 export const routes: Routes = [
   {
@@ -39,6 +40,10 @@ export const routes: Routes = [
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
     canLoad: [CanLoad]
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
   },
   {
     path: '**',
