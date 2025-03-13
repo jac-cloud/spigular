@@ -24,7 +24,6 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit() {
-    // set search input to the value of the query param search
     this.search = this.route.snapshot.queryParamMap.get('search') || '';
 
     this.handleSearch();
@@ -38,11 +37,12 @@ export class ProductsComponent implements OnInit {
   }
 
   handleSearch() {
-    // set query param search to the value of the search input
-    this.router.navigate(['/products'], {
+    // set query param without changing route
+    this.router.navigate([], {
       queryParams: { search: this.search },
+      queryParamsHandling: 'merge',
     });
-
+    
     this.products = this.productService.products.filter((product) => {
       return product.id.toLowerCase().includes(this.search.toLowerCase());
     });

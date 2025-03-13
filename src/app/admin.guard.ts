@@ -6,13 +6,13 @@ import { AuthService } from './auth.service';
   providedIn: 'root',
 })
 export class AdminGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService) {}
 
   canActivate(): boolean {
     if (this.authService.isLoggedIn) {
       return true;
     } else {
-      this.router.navigate(['/']);
+      alert('You do not have permission to view this page');
       return false;
     }
   }
