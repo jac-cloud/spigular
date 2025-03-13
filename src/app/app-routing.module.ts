@@ -8,6 +8,7 @@ import { NgModule } from '@angular/core';
 import { AdminGuard } from './admin.guard';
 import { UnsavedChangesGuard } from './unsaved-changes.guard';
 import { DataResolver } from './data-resolver.guard';
+import { CanLoad } from '@angular/router';
 
 export const routes: Routes = [
   {
@@ -33,6 +34,11 @@ export const routes: Routes = [
     canActivate: [AdminGuard],
     canDeactivate: [UnsavedChangesGuard],
     resolve: { data: DataResolver }
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
+    canLoad: [CanLoad]
   },
   {
     path: '**',
