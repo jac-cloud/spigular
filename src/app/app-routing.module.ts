@@ -5,6 +5,7 @@ import { HomeComponent } from "./home/home.component";
 import { NotFoundComponent } from "./not-found/not-found.component";
 import { ProductsComponent } from "./products/products.component";
 import { NgModule } from "@angular/core";
+import { AdminCanLoadGuard } from './guards/admin-can-load.guard';
 
 export const routes: Routes = [
   {
@@ -22,6 +23,11 @@ export const routes: Routes = [
   {
     path: 'products',
     component: ProductsComponent,
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
+    canLoad: [AdminCanLoadGuard],
   },
   {
     path: '**',
